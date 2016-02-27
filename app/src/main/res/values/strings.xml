@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Company Details</string>
+    <string name="action_settings">App Info</string>
+
+    <string-array name="departments">
+        <item>Accounting</item>
+        <item>Advertising</item>
+        <item>Asset Management</item>
+        <item>Customer Relations</item>
+        <item>Customer Services</item>
+        <item>Finances</item>
+        <item>Human Resources</item>
+        <item>Legal Department</item>
+        <item>Media Relations</item>
+        <item>Payroll | Public Relations</item>
+        <item>Quality Assurance</item>
+        <item>Sales and Marketing</item>
+        <item>Research and Development</item>
+        <item>Tech Support</item>
+    </string-array>
+
+    <string name="app_details"> 1. Android Material design used. \n\n 2. Android Volley library used for internet calls
+        (Easy to implement and faster in getting the data) \n\n 3. Expandable Card View to make the user interface more cooler.
+        \n\n4. SearchView for filtering the search based on Company name. \n\n 5. Spinner view to filter based on company departments.\n\n Check out my other android apps available in google play store. \n\n</string>
+
+</resources>

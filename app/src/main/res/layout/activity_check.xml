@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <TextView
+            android:id="@+id/textView_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:text="@string/app_details"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton_RD"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignStart="@+id/textView_info"
+            android:layout_below="@+id/textView_info"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/rider_logo"
+            android:onClick="openRd" />
+
+        <ImageButton
+            android:id="@+id/imageButton_KK"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignEnd="@+id/textView_info"
+            android:layout_alignTop="@+id/imageButton_RD"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/ktown_logo"
+            android:onClick="openKk" />
+    </RelativeLayout>
+
+</RelativeLayout>
