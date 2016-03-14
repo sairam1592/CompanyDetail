@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".UI.SplashActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,11 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".InfoActivity"
+            android:name=".UI.InfoActivity"
             android:label="@string/action_settings"
             android:screenOrientation="portrait" />
     </application>

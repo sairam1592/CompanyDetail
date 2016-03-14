@@ -1,15 +1,16 @@
-package com.wiredelta.sample.companydetail;
+package com.wiredelta.sample.companydetail.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Menu;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,12 +20,15 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.wiredelta.sample.companydetail.Constants;
+import com.wiredelta.sample.companydetail.R;
+import com.wiredelta.sample.companydetail.model.Company;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ArrayList<HashMap<String, String>> compDetails;
+    ArrayList<Company> compDetails;
     private String[] dept;
     Spinner filter_spinner;
     SearchView search_view;
@@ -38,11 +42,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        compDetails = (ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra(Constants.INTENT_COMPDETAILS);
+        compDetails = getIntent().getParcelableArrayListExtra(Constants.INTENT_COMPDETAILS);
 
         dept = getResources().getStringArray(R.array.departments);
-
-        filter_spinner = (Spinner) findViewById(R.id.FilterSpinner);
         onDeptSelection();
         search_view = (SearchView) findViewById(R.id.editText_search);
 
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     public void onDeptSelection() {
+        filter_spinner = (Spinner) findViewById(R.id.FilterSpinner);
         ArrayAdapter<String> adapter_dept = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, dept);
         adapter_dept
@@ -119,11 +122,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void filterView(String value, String tag) {
-        ArrayList<HashMap<String, String>> filterCompDet = new ArrayList<>();
-        for (int i = 0; i < compDetails.size(); i++) {
-            final String text = compDetails.get(i).get(tag);
-            if (text.toLowerCase().contains(value.toLowerCase())) {
-                filterCompDet.add(compDetails.get(i));
+        ArrayList<Company> filterCompDet = new ArrayList<>();
+        String text;
+        if (tag.equalsIgnoreCase(Constants.TAG_COMP_NAME)) {
+            for (int i = 0; i < compDetails.size(); i++) {
+                text = compDetails.get(i).getComapnyName();
+                if (text.toLowerCase().contains(value.toLowerCase())) {
+                    filterCompDet.add(compDetails.get(i));
+                }
+            }
+        } else if (tag.equalsIgnoreCase(Constants.TAG_COMP_DEPT)) {
+            for (int i = 0; i < compDetails.size(); i++) {
+                text = compDetails.get(i).getCompanyDepartments();
+                if (text.toLowerCase().contains(value.toLowerCase())) {
+                    filterCompDet.add(compDetails.get(i));
+                }
             }
         }
 
@@ -170,9 +183,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
-            ArrayList<HashMap<String, String>> compDetails;
+            ArrayList<Company> compDetails;
 
-            public ContentAdapter(ArrayList<HashMap<String, String>> compDetails) {
+            public ContentAdapter(ArrayList<Company> compDetails) {
                 this.compDetails = compDetails;
             }
 
@@ -184,12 +197,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onBindViewHolder(ViewHolder holder, int position) {
 
-                holder.compId.setText(compDetails.get(position).get(Constants.TAG_COMP_ID));
-                holder.compName.setText(compDetails.get(position).get(Constants.TAG_COMP_NAME));
-                holder.compOwner.setText(compDetails.get(position).get(Constants.TAG_COMP_OWNER));
-                holder.compDate.setText(compDetails.get(position).get(Constants.TAG_COMP_STARTDATE));
-                holder.compDesc.setText(compDetails.get(position).get(Constants.TAG_COMP_DESC));
-                holder.compDept.setText(compDetails.get(position).get(Constants.TAG_COMP_DEPT));
+                holder.compId.setText(compDetails.get(position).getCompanyID());
+                holder.compName.setText(compDetails.get(position).getComapnyName());
+                holder.compOwner.setText(compDetails.get(position).getCompanyOwner());
+                holder.compDate.setText(compDetails.get(position).getCompanyStartDate());
+                holder.compDesc.setText(compDetails.get(position).getCompanyDescription());
+                holder.compDept.setText(compDetails.get(position).getCompanyDepartments());
+
             }
 
             @Override

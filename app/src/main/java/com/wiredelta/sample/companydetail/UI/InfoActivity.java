@@ -1,4 +1,4 @@
-package com.wiredelta.sample.companydetail;
+package com.wiredelta.sample.companydetail.UI;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.wiredelta.sample.companydetail.Constants;
+import com.wiredelta.sample.companydetail.R;
 
 /**
  * Created by Admin on 2/26/2016.
