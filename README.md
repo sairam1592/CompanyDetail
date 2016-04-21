@@ -10,3 +10,4 @@ Interesting details,
 2. Material design expandable card view for viewing company details.
 3. Android volley library for faster networking. 
 4. Android Search View for filtering based on Company Name & Spinner view for filtering based on Company Departments.
+4. Android parcelable concept implemented for passing data between activities.
